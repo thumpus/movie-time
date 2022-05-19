@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>It's movie time!</h1>
+    <form id = "inputForm">
+        <input type="text" id="movieTitle" placeholder="Movie Title"></input>
+        <input type="number" id="movieRating" min="0" max="10" placeholder="Rating"></input>
+        <input type="button" id="submitButton" value="Submit"></input>
+    </form>
+    <ul id = "movieList"></ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>  
+    <script>
+        $('#inputForm').on("click", "#submitButton", function(){
+    const $movieTitle = $("#movieTitle").val();
+    const $movieRating = $("#movieRating").val();
+    if ($movieTitle.length >= 2 && $movieRating < 10 && $movieRating >= 0){
+   $("ul").append($("<li>").text(`${$movieTitle}: ${$movieRating}/10 `).append($('<input type="button" value="remove" class="removeButton">')))
+    } 
+})
+
+$('#movieList').on("click", ".removeButton", function(evt){
+    $(evt.target).parent().remove()
+})
+    </script>
+</body>
+</html>
